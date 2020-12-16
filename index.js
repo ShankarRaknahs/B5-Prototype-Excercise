@@ -100,19 +100,68 @@ Car.prototype.drive = function(distance){
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
- 
+function Baby(favoriteToy) {
+ this.favoriteToy = favoriteToy;
 }
+
+Baby.prototype.play = function (){
+  return `Playing with ${this.favoriteToy}`
+}
+
+Object.setPrototypeOf(Baby,Person);
 
 
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
+  1. this refers to the global object "window" in browser and "GLOBAL" in node server in a normal simple function
+  
++++++++++++++++++++++++++++++++++++++          
+  function sample(){
+    console.log(this)
+  }
+
+  sample();
++++++++++++++++++++++++++++++++++++++
+  var sample = function(){
+    console.log(this)
+  }
+  sample();
++++++++++++++++++++++++++++++++++++++
+
+  2. this refers to the object on which this function is called
++++++++++++++++++++++++++++++++++++++
+  var sampleObj = {
+    sampleFunc: function(){
+        console.log(this);
+    }
+  }
+  sampleObj.sampleFunc()
++++++++++++++++++++++++++++++++++++++
+function sampleFunc(){
+    console.log(this);
+
+}
+
+var sampleObj = {
+    sampleFunc: sampleFunc
+  }
+
+  sampleObj.sampleFunc();
++++++++++++++++++++++++++++++++++++++
+
+  3. this refers to a new object with the new keyword, usually used for an constructor operation
++++++++++++++++++++++++++++++++++++++
+function sampleFunc(){
+    console.log(this);
+}
+
+new sampleFunc();
++++++++++++++++++++++++++++++++++++++
   4. 
 */
+
+
 
 
 ///////// END OF CHALLENGE /////////
